@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -15,6 +16,15 @@ import java.util.List;
 @Path("/entities")
 @Api (value = "/entities", description = "Web Services to browse entities")
 public class EntityBrowser {
+
+    @POST
+    @Path("/one")
+    @ApiOperation(value = "Submit one entity", notes = "Returns self", response = Entity.class)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response postEntity(Entity entity) {
+        return Response.ok().entity(entity).build();
+    }
+
     @GET
     @Path("/any")
     @ApiOperation(value = "Return one entity", notes = "Returns one entity at random", response = Entity.class)
